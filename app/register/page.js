@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { ethers } from 'ethers';
 import abi from '../abi/UserDB.json';
 
-const CONTRACT_ADDRESS = '0x568847f8c8d9339470aDDC0724e82897CF9A7752';
+const USERDB_CONTRACT_ADDRESS = process.env.NEXT_PUBLIC_USERDB_CONTRACT_ADDRESS;
 
 export default function RegisterPage() {
   const [selected, setSelected] = useState(null);
@@ -16,7 +16,7 @@ export default function RegisterPage() {
 
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner();
-    const contract = new ethers.Contract(CONTRACT_ADDRESS, abi, signer);
+    const contract = new ethers.Contract(USERDB_CONTRACT_ADDRESS, abi, signer);
 
     try {
       const tx = await contract.registerUser(role);

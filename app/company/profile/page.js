@@ -8,8 +8,8 @@ import { ethers } from 'ethers';
 import abi from '../../abi/CompanyProfileDB.json';
 import CompanyNavbar from '../../components/CompanyNavbar';  // Import CompanyNavbar here
 
-const CONTRACT_ADDRESS = '0x2ed363230d00f1d30b2129e5a72af6c7ecb82a38';
 
+const CANDIDATE_PROFILE_CONTRACT_ADDRESS= process.env.NEXT_PUBLIC_CANDIDATE_PROFILE_CONTRACT_ADDRESS;
 export default function CompanyProfile() {
   const [form, setForm] = useState({
     name: '',
@@ -55,7 +55,7 @@ export default function CompanyProfile() {
 
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const signer = provider.getSigner();
-      const contract = new ethers.Contract(CONTRACT_ADDRESS, abi, signer);
+      const contract = new ethers.Contract(CANDIDATE_PROFILE_CONTRACT_ADDRESS, abi, signer);
       const firebaseUrl = `https://firestore.googleapis.com/v1/projects/decent-hiring/databases/(default)/documents/${docRef.path}`;
 
       const tx = await contract.setProfileURL(firebaseUrl);
