@@ -13,13 +13,16 @@ export default function Home() {
       alert('MetaMask is not installed!');
       return;
     }
-
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    const signer = provider.getSigner();
-    const address = await signer.getAddress();
-    const contract = new ethers.Contract(USERDB_CONTRACT_ADDRESS, abi, signer);
-
+  
     try {
+      // This line forces the wallet connect popup
+      await window.ethereum.request({ method: 'eth_requestAccounts' });
+  
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      const address = await signer.getAddress();
+      const contract = new ethers.Contract(USERDB_CONTRACT_ADDRESS, abi, signer);
+  
       const user = await contract.getUser(address);
       if (user.wallet === ethers.constants.AddressZero) {
         router.push('/register');
@@ -32,7 +35,7 @@ export default function Home() {
       router.push('/register');
     }
   }
-
+  
   return (
     <div className="flex flex-col justify-center items-center min-h-screen px-6 relative overflow-hidden font-special">
       {/* Animated overlay gradient */}
