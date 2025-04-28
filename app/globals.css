@@ -1,76 +1,46 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+
+
+/* Import a custom font */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+/* Custom animation for gradient */
+@keyframes gradient-slow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }
 
-/* Light mode background */
-body {
-  background: #5fafba; /* This is a cool teal color */
-  color: var(--foreground);
-  font-family: 'Inter', sans-serif;
+.animate-gradient-slow {
+  background-size: 200% 200%;
+  animation: gradient-slow 10s ease infinite;
 }
 
-
-/* Buttons */
-button {
-  transition: background-color 0.3s ease, transform 0.3s ease;
-  padding: 10px 20px;
-  border-radius: 5px;
-  font-weight: bold;
-  background-color: #4CAF50;
-  color: white;
-  border: none;
+/* Special font */
+.font-special {
+  font-family: 'Orbitron', sans-serif;
 }
 
-/* Inputs */
-input, textarea {
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-  border: 1px solid #c07c7c;
-  padding: 10px;
-  border-radius: 5px;
-  width: 100%;
+/* (Optional) Make text shimmer a little */
+@keyframes text {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
 }
 
-input:focus, textarea:focus, button:hover {
-  outline: none;
-  box-shadow: 0px 0px 15px rgba(50, 51, 97, 0.6);
-  border-color: #b564c8;
-}
-
-/* Updated: Profile container background set to white */
-.profile-container {
-  max-width: 800px;
-  margin: auto;
-  padding: 20px;
-  background: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-h2 {
-  font-size: 24px;
-  font-weight: 600;
-  margin-bottom: 20px;
-}
-
-label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: 600;
+.animate-text {
+  background-size: 200% 200%;
+  animation: text 5s ease infinite;
 }
