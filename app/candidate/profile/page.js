@@ -74,7 +74,7 @@ export default function CandidateProfile() {
     <div>
       <CandidateNavbar /> {/* Add Candidate Navbar here */}
       <div className="max-w-2xl mx-auto bg-white p-8 rounded-xl shadow-lg space-y-6 mt-10">
-        <h2 className="text-3xl font-bold text-center text-blue-600">Candidate Profile</h2>
+        <h2 className="text-3xl font-bold text-center text-black">Candidate Profile</h2>
         
         {['username', 'age', 'skills', 'bio', 'resume'].map(field => (
           field === 'bio' || field === 'resume' ? (

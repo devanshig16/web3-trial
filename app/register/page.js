@@ -16,17 +16,19 @@ export default function RegisterPage() {
       alert('MetaMask is not installed!');
       return;
     }
-
+  
     try {
       setLoading(true);
-
+  
       const provider = new ethers.providers.Web3Provider(window.ethereum);
       const signer = provider.getSigner();
       const contract = new ethers.Contract(USERDB_CONTRACT_ADDRESS, abi, signer);
-
-      const tx = await contract.registerUser(role);
+  
+      // Pass 1 for Candidate and 2 for Company (matching the enum values)
+      const roleValue = role === 0 ? 1 : 2; // Use 1 for Candidate and 2 for Company
+      const tx = await contract.registerUser(roleValue); 
       await tx.wait(); // Wait for transaction to be mined
-
+  
       router.push(role === 0 ? '/candidate' : '/company');
     } catch (err) {
       console.error('Registration error:', err);
@@ -35,6 +37,7 @@ export default function RegisterPage() {
       setLoading(false);
     }
   }
+  
 
   return (
     <div className="flex flex-col items-center justify-center min-h-[90vh] px-6 bg-gradient-to-br from-[#dbeafe] via-[#ede9fe] to-[#dbeafe] text-gray-900 space-y-10">

@@ -21,7 +21,7 @@ export default function BrowseCandidates() {
     <div>
       <CandidateNavbar /> {/* Add Candidate Navbar here */}
       <div className="max-w-5xl mx-auto mt-10 p-4 space-y-8">
-        <h2 className="text-3xl font-semibold text-center text-blue-600 mb-6">Browse Candidates</h2>
+        <h2 className="text-3xl font-semibold text-center text-white mb-6">Browse Candidates</h2>
 
         {profiles.length === 0 ? (
           <p className="text-center text-gray-600">No candidate profiles available.</p>
